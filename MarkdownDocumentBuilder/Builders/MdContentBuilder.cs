@@ -1,9 +1,12 @@
-﻿using DocumentBuilder.Core.Utilities;
-using DocumentBuilder.Factories;
-using DocumentBuilder.Options.Enumerations;
+﻿using MarkdownDocumentBuilder.Factories;
 using MarkdownDocumentBuilder.Model;
 using MarkdownDocumentBuilder.Model.Elements;
+using MarkdownDocumentBuilder.Model.Elements.Headers;
+using MarkdownDocumentBuilder.Model.Elements.Lists;
+using MarkdownDocumentBuilder.Model.Elements.Table;
 using MarkdownDocumentBuilder.Options;
+using MarkdownDocumentBuilder.Options.Enums;
+using MarkdownDocumentBuilder.Utilities;
 
 namespace MarkdownDocumentBuilder.Builders;
 

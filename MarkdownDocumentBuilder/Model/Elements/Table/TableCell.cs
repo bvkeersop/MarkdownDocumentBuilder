@@ -1,4 +1,4 @@
-﻿namespace MarkdownDocumentBuilder.Model.Elements;
+﻿namespace MarkdownDocumentBuilder.Model.Elements.Table;
 
 public class TableCell
 {

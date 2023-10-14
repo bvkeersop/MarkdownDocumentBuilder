@@ -5,7 +5,7 @@ public interface INewLineProvider
     string GetNewLine();
 }
 
-public class WindowsNewLineProvider : INewLineProvider
+internal class WindowsNewLineProvider : INewLineProvider
 {
     public string GetNewLine()
     {
@@ -13,7 +13,7 @@ public class WindowsNewLineProvider : INewLineProvider
     }
 }
 
-public class LinuxNewLineProvider : INewLineProvider
+internal class LinuxNewLineProvider : INewLineProvider
 {
     public string GetNewLine()
     {
@@ -21,7 +21,7 @@ public class LinuxNewLineProvider : INewLineProvider
     }
 }
 
-public class EnvironmentNewLineProvider : INewLineProvider
+internal class EnvironmentNewLineProvider : INewLineProvider
 {
     public string GetNewLine()
     {

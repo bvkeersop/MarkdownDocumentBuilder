@@ -4,14 +4,14 @@ namespace MarkdownDocumentBuilder.Model.Elements;
 
 internal class Raw : IMarkdownElement
 {
-    public string Value { get; }
+    public readonly string _value;
 
     public Raw(string value)
     {
-        Value = value;
+        _value = value;
     }
 
     public IEnumerable<MarkdownLine> ToMarkdown()
-        => new MarkdownLine(Value)
+        => new MarkdownLine(_value)
         .WrapAsEnumerable();
 }

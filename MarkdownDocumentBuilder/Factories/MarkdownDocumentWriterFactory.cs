@@ -1,14 +1,19 @@
-﻿using MarkdownDocumentBuilder.Utilities;
+﻿using MarkdownDocumentBuilder.Options.Enums;
+using MarkdownDocumentBuilder.Utilities;
 using MarkdownDocumentBuilder.Writers;
 
 namespace MarkdownDocumentBuilder.Factories;
 
-public static class MarkdownDocumentWriterFactory
+internal static class MarkdownDocumentWriterFactory
 {
-    public static IMarkdownDocumentWriter Create(Stream outputStream, INewLineProvider newLineProvider)
+    public static IMarkdownDocumentWriter Create(
+        Stream outputStream,
+        IIndentationProvider indentationProvider,
+        INewLineProvider? newLineProvider = null)
     {
+        newLineProvider ??= NewLineProviderFactory.Create(LineEndings.Environment);
         var streamWriter = new StreamWriter(outputStream);
-        var markdownStreamWriter = new MarkdownStreamWriter(streamWriter, newLineProvider);
+        var markdownStreamWriter = new MarkdownStreamWriter(streamWriter, indentationProvider, newLineProvider);
         return new MarkdownDocumentWriter(markdownStreamWriter);
     }
 }

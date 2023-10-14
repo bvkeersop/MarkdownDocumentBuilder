@@ -1,23 +1,22 @@
-﻿using DocumentBuilder.Markdown.Constants;
-using MarkdownDocumentBuilder.Extensions;
+﻿using MarkdownDocumentBuilder.Extensions;
 using System.Text;
 
 namespace MarkdownDocumentBuilder.Model.Elements;
 
 internal class Blockquote : IMarkdownElement
 {
-    private string Value { get; }
+    private readonly string _value;
 
     public Blockquote(string value)
     {
-        Value = value;
+        _value = value;
     }
 
     public IEnumerable<MarkdownLine> ToMarkdown()
         => new StringBuilder()
         .Append(Indicators.Blockquote)
         .Append(' ')
-        .Append(Value)
+        .Append(_value)
         .ToString()
         .ToMarkdownLine()
         .WrapAsEnumerable();

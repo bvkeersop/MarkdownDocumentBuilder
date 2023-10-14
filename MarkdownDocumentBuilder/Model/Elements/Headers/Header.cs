@@ -1,25 +1,24 @@
 ﻿using MarkdownDocumentBuilder.Extensions;
-using MarkdownDocumentBuilder.Options;
 using System.Text;
 
-namespace MarkdownDocumentBuilder.Model.Elements;
+namespace MarkdownDocumentBuilder.Model.Elements.Headers;
 
 internal abstract class Header : IMarkdownElement
 {
-    public string Indicator { get; }
-    public string Value { get; }
+    private readonly string _indicator;
+    public readonly string _value;
 
     protected Header(string indicator, string value)
     {
-        Indicator = indicator;
-        Value = value;
+        _indicator = indicator;
+        _value = value;
     }
 
     public IEnumerable<MarkdownLine> ToMarkdown()
         => new StringBuilder()
-            .Append(Indicator)
+            .Append(_indicator)
             .Append(' ')
-            .Append(Value)
+            .Append(_value)
             .ToString()
             .ToMarkdownLine()
             .WrapAsEnumerable();

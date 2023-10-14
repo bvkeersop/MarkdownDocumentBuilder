@@ -1,7 +1,7 @@
-﻿using DocumentBuilder.Options.Enumerations;
-using DocumentBuilder.Utilities;
+﻿using MarkdownDocumentBuilder.Options.Enums;
+using MarkdownDocumentBuilder.Utilities;
 
-namespace DocumentBuilder.Factories;
+namespace MarkdownDocumentBuilder.Factories;
 
 public static class IndentationProviderFactory
 {

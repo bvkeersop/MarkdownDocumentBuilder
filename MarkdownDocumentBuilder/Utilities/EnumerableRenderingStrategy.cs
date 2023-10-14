@@ -1,6 +1,6 @@
-﻿using DocumentBuilder.Exceptions;
+﻿using MarkdownDocumentBuilder.Exceptions;
 
-namespace DocumentBuilder.Core.Utilities;
+namespace MarkdownDocumentBuilder.Utilities;
 
 public interface IEnumerableRenderingStrategy
 {

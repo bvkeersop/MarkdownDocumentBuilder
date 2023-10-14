@@ -1,6 +1,4 @@
-﻿using DocumentBuilder.Markdown.Constants;
-
-namespace MarkdownDocumentBuilder.Model.Elements;
+﻿namespace MarkdownDocumentBuilder.Model.Elements.Headers;
 
 internal class Header1 : Header, IMarkdownElement
 {

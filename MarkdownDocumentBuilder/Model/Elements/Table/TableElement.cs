@@ -1,8 +1,8 @@
-﻿using DocumentBuilder.Core.Extensions;
-using DocumentBuilder.Helpers;
-using DocumentBuilder.Options.Enumerations;
-using MarkdownDocumentBuilder.Attributes;
+﻿using MarkdownDocumentBuilder.Attributes;
+using MarkdownDocumentBuilder.Extensions;
 using MarkdownDocumentBuilder.Options;
+using MarkdownDocumentBuilder.Options.Enums;
+using MarkdownDocumentBuilder.Utilities;
 using System.Text;
 
 namespace MarkdownDocumentBuilder.Model.Elements.Table;
@@ -20,7 +20,7 @@ internal abstract class TableElement<TRow>
     public TableElement(IEnumerable<TRow> tableRows, MarkdownTableOptions options)
     {
         TableValues = new Matrix<TRow>(tableRows);
-        OrderedColumnAttributes = ReflectionHelper<TRow>.GetOrderedColumnAttributes();
+        OrderedColumnAttributes = TableReflectionHelper.GetOrderedColumnAttributes<TRow>();
         TableCells = CreateEnumerableOfTableCells();
         Options = options;
     }

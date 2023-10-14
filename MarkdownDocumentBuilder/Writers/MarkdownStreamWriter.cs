@@ -2,10 +2,8 @@
 using MarkdownDocumentBuilder.Utilities;
 
 namespace MarkdownDocumentBuilder.Writers;
-public interface IMarkdownStreamWriter : IDisposable
+internal interface IMarkdownStreamWriter : IDisposable
 {
-    Task WriteAsync(char value);
-    Task WriteAsync(string value);
     Task WriteLineAsync(MarkdownLine line);
     Task WriteNewLineAsync();
     Task FlushAsync();
@@ -14,40 +12,35 @@ public interface IMarkdownStreamWriter : IDisposable
 internal class MarkdownStreamWriter : IMarkdownStreamWriter
 {
     private bool _disposedValue;
+    private readonly StreamWriter _streamWriter;
+    private readonly INewLineProvider _newLineProvider;
+    private readonly IIndentationProvider _indentationProvider;
 
-    public StreamWriter StreamWriter { get; }
-    public INewLineProvider NewLineProvider { get; }
-
-    public MarkdownStreamWriter(StreamWriter streamWriter, INewLineProvider newLineProvider)
+    public MarkdownStreamWriter(
+        StreamWriter streamWriter,
+        IIndentationProvider indentationProvider,
+        INewLineProvider newLineProvider)
     {
-        StreamWriter = streamWriter;
-        NewLineProvider = newLineProvider;
-    }
-
-    public async Task WriteAsync(char value)
-    {
-        await StreamWriter.WriteAsync(value).ConfigureAwait(false);
-    }
-
-    public async Task WriteAsync(string value)
-    {
-        await StreamWriter.WriteAsync(value).ConfigureAwait(false);
+        _streamWriter = streamWriter;
+        _newLineProvider = newLineProvider;
+        _indentationProvider = indentationProvider;
     }
 
     public async Task WriteLineAsync(MarkdownLine line)
     {
-        await StreamWriter.WriteAsync(line.Content).ConfigureAwait(false);
+        var indentedMarkdownLineAsText = line.GetIndentedContent(_indentationProvider);
+        await _streamWriter.WriteAsync(indentedMarkdownLineAsText).ConfigureAwait(false);
         await WriteNewLineAsync().ConfigureAwait(false);
     }
 
     public async Task WriteNewLineAsync()
     {
-        await StreamWriter.WriteAsync(NewLineProvider.GetNewLine()).ConfigureAwait(false);
+        await _streamWriter.WriteAsync(_newLineProvider.GetNewLine()).ConfigureAwait(false);
     }
 
     public async Task FlushAsync()
     {
-        await StreamWriter.FlushAsync();
+        await _streamWriter.FlushAsync();
     }
 
     protected virtual void Dispose(bool disposing)
@@ -56,7 +49,7 @@ internal class MarkdownStreamWriter : IMarkdownStreamWriter
         {
             if (disposing)
             {
-                StreamWriter.Dispose();
+                _streamWriter.Dispose();
             }
 
             _disposedValue = true;

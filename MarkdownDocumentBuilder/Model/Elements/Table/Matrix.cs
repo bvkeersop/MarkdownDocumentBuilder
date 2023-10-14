@@ -1,8 +1,8 @@
-﻿using DocumentBuilder.Exceptions;
-using DocumentBuilder.Helpers;
+﻿using MarkdownDocumentBuilder.Exceptions;
+using MarkdownDocumentBuilder.Utilities;
 using System.Reflection;
 
-namespace MarkdownDocumentBuilder.Model.Elements;
+namespace MarkdownDocumentBuilder.Model.Elements.Table;
 
 public class Matrix<TValue>
 {
@@ -19,7 +19,7 @@ public class Matrix<TValue>
 
     public Matrix(IEnumerable<TValue> tableRows)
     {
-        var orderedPropertyInfos = ReflectionHelper<TValue>.GetOrderedTableRowPropertyInfos();
+        var orderedPropertyInfos = TableReflectionHelper.GetOrderedTableRowPropertyInfos<TValue>();
 
         NumberOfRows = tableRows.Count();
         NumberOfColumns = orderedPropertyInfos.Count();
@@ -37,7 +37,7 @@ public class Matrix<TValue>
                 if (currentTableRow == null)
                 {
                     throw new MarkdownDocumentBuilderException(
-                        MarkdownDocumentBuilderErrorCode.CouldNotFindTableRowAtIndex, 
+                        MarkdownDocumentBuilderErrorCode.CouldNotFindTableRowAtIndex,
                         $"Could not find table row at index {rowIndex}");
                 }
 
