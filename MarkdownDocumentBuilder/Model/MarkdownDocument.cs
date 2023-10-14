@@ -31,7 +31,6 @@ public class MarkdownDocument
         _options = options ?? new MarkdownDocumentOptions();
     }
 
-
     /// <summary>
     /// Writes the document to the provided path, will replace existing documents
     /// </summary>

@@ -1,4 +1,7 @@
-﻿namespace MarkdownDocumentBuilder.Model.Elements;
+﻿using MarkdownDocumentBuilder.Extensions;
+using System.Text;
+
+namespace MarkdownDocumentBuilder.Model.Elements;
 
 internal class FencedCodeblock : IMarkdownElement
 {
@@ -13,11 +16,17 @@ internal class FencedCodeblock : IMarkdownElement
 
     public IEnumerable<MarkdownLine> ToMarkdown() => new List<MarkdownLine>
     {
-        new MarkdownLine(Indicators.Codeblock),
-        new MarkdownLine(_language),
+        GetCodeBlockStart(),
         MarkdownLine.Empty(),
         new MarkdownLine(_codeblock),
         MarkdownLine.Empty(),
         new MarkdownLine(Indicators.Codeblock)
     };
+
+    private MarkdownLine GetCodeBlockStart() 
+        => new StringBuilder()
+            .Append(Indicators.Codeblock)
+            .Append(_language)
+            .ToString()
+            .ToMarkdownLine();
 }

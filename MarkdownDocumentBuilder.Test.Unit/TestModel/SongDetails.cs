@@ -1,4 +1,4 @@
-﻿namespace MarkdownDocumentBuilder.Test.Unit.Model;
+﻿namespace MarkdownDocumentBuilder.Test.Unit.TestModel;
 
 internal class SongDetails
 {

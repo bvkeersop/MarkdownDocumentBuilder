@@ -1,5 +1,5 @@
 ﻿using MarkdownDocumentBuilder.Model;
-using MarkdownDocumentBuilder.Utilities;
+using MarkdownDocumentBuilder.Options;
 
 namespace MarkdownDocumentBuilder.Writers;
 internal interface IMarkdownStreamWriter : IDisposable
@@ -33,15 +33,10 @@ internal class MarkdownStreamWriter : IMarkdownStreamWriter
         await WriteNewLineAsync().ConfigureAwait(false);
     }
 
-    public async Task WriteNewLineAsync()
-    {
-        await _streamWriter.WriteAsync(_newLineProvider.GetNewLine()).ConfigureAwait(false);
-    }
+    public async Task WriteNewLineAsync() 
+        => await _streamWriter.WriteAsync(_newLineProvider.GetNewLine()).ConfigureAwait(false);
 
-    public async Task FlushAsync()
-    {
-        await _streamWriter.FlushAsync();
-    }
+    public async Task FlushAsync() => await _streamWriter.FlushAsync();
 
     protected virtual void Dispose(bool disposing)
     {

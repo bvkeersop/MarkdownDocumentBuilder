@@ -27,6 +27,7 @@ internal abstract class MarkdownList<TValue> : IMarkdownElement
                 continue;
             }
 
+            _nestedIndex.Reset();
             var generatedMarkdownLinesForItem = GenerateMarkdownRecursively(item, 0);
             markdownLines.AddRange(generatedMarkdownLinesForItem);
         }
@@ -43,8 +44,34 @@ internal abstract class MarkdownList<TValue> : IMarkdownElement
 
         var markdownLines = new List<MarkdownLine>();
 
-        var objectType = item.GetType();
-        var properties = objectType.GetProperties();
+        var itemType = item.GetType();
+
+        if (ShouldBeRenderedWithToString(item, itemType))
+        {
+            return RenderWithToString(item, indentationLevel, markdownLines);
+        }
+
+        RecursivelyTraversePropertiesUntilCanBeRenderedWithToString(item, indentationLevel, markdownLines, itemType);
+
+        return markdownLines;
+    }
+
+    private IEnumerable<MarkdownLine> RenderWithToString(object item, int indentationLevel, List<MarkdownLine> markdownLines)
+    {
+        var stringRepresentation = item.ToString();
+
+        if (stringRepresentation is null)
+        {
+            return Enumerable.Empty<MarkdownLine>();
+        }
+
+        HandleStringType(markdownLines, stringRepresentation, indentationLevel);
+        return markdownLines;
+    }
+
+    private void RecursivelyTraversePropertiesUntilCanBeRenderedWithToString(object item, int indentationLevel, List<MarkdownLine> markdownLines, Type itemType)
+    {
+        var properties = itemType.GetProperties();
 
         foreach (var property in properties)
         {
@@ -57,14 +84,12 @@ internal abstract class MarkdownList<TValue> : IMarkdownElement
 
             if (propertyValue is not null)
             {
-                GenerateMarkdownRecursivelyBasedOnType(indentationLevel, markdownLines, propertyValue);
+                RecursivelyTraversePropertyUntilCanBeRenderedWithToString(indentationLevel, markdownLines, propertyValue);
             }
         }
-
-        return markdownLines;
     }
 
-    private void GenerateMarkdownRecursivelyBasedOnType(
+    private void RecursivelyTraversePropertyUntilCanBeRenderedWithToString(
         int indentationLevel, 
         List<MarkdownLine> markdownLines, 
         object propertyValue)
@@ -124,8 +149,8 @@ internal abstract class MarkdownList<TValue> : IMarkdownElement
     private void HandleStringType(List<MarkdownLine> markdownLines, object propertyValue, int currentIndentationLevel)
     {
         _nestedIndex.Increment();
-        var markdownContent1 = CombineBulletPointAndValue(propertyValue);
-        var markdownLine = new MarkdownLine(markdownContent1, currentIndentationLevel);
+        var markdownContent = CombineBulletPointAndValue(propertyValue);
+        var markdownLine = new MarkdownLine(markdownContent, currentIndentationLevel);
         markdownLines.Add(markdownLine);
         return;
     }
@@ -140,4 +165,7 @@ internal abstract class MarkdownList<TValue> : IMarkdownElement
             .Append(text)
             .ToString();
     }
+
+    private static bool ShouldBeRenderedWithToString(object item, Type itemType)
+        => itemType.IsValueType || item is string;
 }

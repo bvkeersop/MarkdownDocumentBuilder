@@ -13,21 +13,21 @@ internal class TableRows<TRow> : TableElement<TRow>, IMarkdownElement
     public IEnumerable<MarkdownLine> ToMarkdown()
     {
         var markdownLines = new List<MarkdownLine>();
-        var sb = new StringBuilder();
         var numberOfRows = TableValues.NumberOfRows;
 
         for (var i = 0; i < numberOfRows; i++)
         {
             var currentRow = TableValues.GetRow(i);
-            var markdownLine = CreateMarkdownTableRowAsync(sb, currentRow);
+            var markdownLine = CreateMarkdownTableRowAsync(currentRow);
             markdownLines.Add(markdownLine);
         }
 
         return markdownLines;
     }
 
-    private MarkdownLine CreateMarkdownTableRowAsync(StringBuilder sb, TableCell[] tableRow)
+    private MarkdownLine CreateMarkdownTableRowAsync(TableCell[] tableRow)
     {
+        var sb = new StringBuilder();
         sb.Append(_columnDivider);
         for (var i = 0; i < tableRow.Length; i++)
         {

@@ -1,4 +1,4 @@
-﻿using MarkdownDocumentBuilder.Utilities;
+﻿using MarkdownDocumentBuilder.Options;
 using System.Text;
 
 namespace MarkdownDocumentBuilder.Model;

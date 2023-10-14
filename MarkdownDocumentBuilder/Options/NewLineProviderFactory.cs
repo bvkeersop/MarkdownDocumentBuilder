@@ -1,7 +1,6 @@
 ﻿using MarkdownDocumentBuilder.Options.Enums;
-using MarkdownDocumentBuilder.Utilities;
 
-namespace MarkdownDocumentBuilder.Factories;
+namespace MarkdownDocumentBuilder.Options;
 
 public static class NewLineProviderFactory
 {

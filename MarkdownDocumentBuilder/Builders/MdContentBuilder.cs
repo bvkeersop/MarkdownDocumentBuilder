@@ -126,20 +126,7 @@ public class MdContentBuilder : IMarkdownContentBuilder
     /// <typeparam name="TRow">The type of the row</typeparam>
     /// <param name="tableRows">The values of the table rows</param>
     /// <returns><see cref="IMarkdownContentBuilder"/></returns>
-    public IMarkdownContentBuilder AddTable<T>(T tableRow)
-    {
-        _ = tableRow ?? throw new ArgumentNullException(nameof(tableRow));
-        var tableRows = new T[] { tableRow };
-        return AddTableInternal(tableRows);
-    }
-
-    /// <summary>
-    /// Adds a table to the document
-    /// </summary>
-    /// <typeparam name="TRow">The type of the row</typeparam>
-    /// <param name="tableRows">The values of the table rows</param>
-    /// <returns><see cref="IMarkdownContentBuilder"/></returns>
-    public IMarkdownContentBuilder AddTable<T>(IEnumerable<T> tableRows)
+    public IMarkdownContentBuilder AddTable<T>(params T[] tableRows)
     {
         _ = tableRows ?? throw new ArgumentNullException(nameof(tableRows));
         return AddTableInternal(tableRows);

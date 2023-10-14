@@ -1,6 +1,4 @@
-﻿using MarkdownDocumentBuilder.Factories;
-using MarkdownDocumentBuilder.Options.Enums;
-using MarkdownDocumentBuilder.Utilities;
+﻿using MarkdownDocumentBuilder.Options.Enums;
 
 namespace MarkdownDocumentBuilder.Options;
 

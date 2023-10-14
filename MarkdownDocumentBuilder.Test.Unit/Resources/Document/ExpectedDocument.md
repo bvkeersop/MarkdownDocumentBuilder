@@ -4,6 +4,9 @@
 | ----------- | ----------------------- | -------------------------- | ---------------- |
 | Rick Astley | Never Gonna Give You Up | Whenever You Need Somebody | 16 November 1987 |
 
+![rick-astley-picture](./assets/images/rick-astley.png)
+*Rick Astley, a hunk of a man!*
+
 ## Description
 
 Rick Astley's hit song where he sings about:
@@ -21,6 +24,15 @@ We're no strangers to love
 You know the rules and so do I (do I)
 A full commitment's what I'm thinking of
 You wouldn't get this from any other guy
+
+```C#
+
+foreach (var note in song)
+{
+    note.Play();
+}
+
+```
 
 ---
 

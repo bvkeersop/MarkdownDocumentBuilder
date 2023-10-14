@@ -1,33 +1,26 @@
 ﻿using System.Text;
 
-namespace MarkdownDocumentBuilder.Utilities;
+namespace MarkdownDocumentBuilder.Options;
 
 public interface IIndentationProvider
 {
     string GetIndentation(int indentationLevel);
 }
 
-internal class SpaceIdentationProvider : IdentationProviderBase, IIndentationProvider
+public class SpaceIdentationProvider : IdentationProviderBase, IIndentationProvider
 {
     public SpaceIdentationProvider(int identationSize, int rootIndentationLevel) : base(identationSize, " ", rootIndentationLevel) { }
-
-    public string GetIndentation(int indentationLevel)
-    {
-        return CreateIndentation(indentationLevel);
-    }
+    public string GetIndentation(int indentationLevel) => CreateIndentation(indentationLevel);
 }
 
-internal class TabIdentationProvider : IdentationProviderBase, IIndentationProvider
+public class TabIdentationProvider : IdentationProviderBase, IIndentationProvider
 {
     public TabIdentationProvider(int identationSize, int rootIndentationLevel) : base(identationSize, "    ", rootIndentationLevel) { }
 
-    public string GetIndentation(int indentationLevel)
-    {
-        return CreateIndentation(indentationLevel);
-    }
+    public string GetIndentation(int indentationLevel) => CreateIndentation(indentationLevel);
 }
 
-internal abstract class IdentationProviderBase
+public abstract class IdentationProviderBase
 {
     private readonly string _indentationCharacter;
     private readonly int _rootIndentationLevel;

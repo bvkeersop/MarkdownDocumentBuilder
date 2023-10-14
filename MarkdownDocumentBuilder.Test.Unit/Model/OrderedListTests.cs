@@ -9,6 +9,32 @@ namespace MarkdownDocumentBuilder.Test.Unit.Model;
 public class OrderedListTests
 {
     [TestMethod]
+    public void ToMarkdown_SimpleList_ReturnsExpectedMarkdown()
+    {
+        // Arrange
+        var simpleList = new string[] { "FirstItem", "SecondItem" };
+
+        var document = MarkdownDocument.Build(document =>
+        {
+            document.Content(content =>
+            {
+                content.AddOrderedList(simpleList);
+            });
+        });
+
+        using var stream = new MemoryStream();
+
+        // Act
+        document.SaveAsync(stream);
+
+        // Assert
+        string result = stream.ReadAsString();
+        string filePath = Path.Combine("Resources/List", "ExpectedSimpleList.md");
+        var expectedDocument = FileReader.ReadFile(filePath);
+        result.Should().Be(expectedDocument);
+    }
+
+    [TestMethod]
     public void ToMarkdown_ComplexList_ReturnsExpectedMarkdown()
     {
         // Arrange
@@ -29,7 +55,33 @@ public class OrderedListTests
 
         // Assert
         string result = stream.ReadAsString();
-        string filePath = Path.Combine("Resources", "ExpectedComplexList.md");
+        string filePath = Path.Combine("Resources/List", "ExpectedComplexList.md");
+        var expectedDocument = FileReader.ReadFile(filePath);
+        result.Should().Be(expectedDocument);
+    }
+
+    [TestMethod]
+    public void ToMarkdown_TwoComplexLists_ReturnsExpectedMarkdown()
+    {
+        // Arrange
+        var complexList = CreateComplexList();
+
+        var document = MarkdownDocument.Build(document =>
+        {
+            document.Content(content =>
+            {
+                content.AddOrderedList(complexList, complexList);
+            });
+        });
+
+        using var stream = new MemoryStream();
+
+        // Act
+        document.SaveAsync(stream);
+
+        // Assert
+        string result = stream.ReadAsString();
+        string filePath = Path.Combine("Resources/List", "ExpectedDoubleComplexList.md");
         var expectedDocument = FileReader.ReadFile(filePath);
         result.Should().Be(expectedDocument);
     }
