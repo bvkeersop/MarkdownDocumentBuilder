@@ -8,7 +8,6 @@ namespace MarkdownDocumentBuilder.Model;
 public class MarkdownDocument
 {
     public MarkdownContent Content { get; set; } = new();
-
     private readonly MarkdownDocumentOptions _options;
     private readonly Action<IMarkdownDocumentBuilder> _executeBuildSteps;
 
@@ -61,10 +60,10 @@ public class MarkdownDocument
 
     private async Task SaveInternalAsync(Stream outputStream)
     {
-        var documentBuilder = new Builders.MdDocumentBuilder();
+        var documentBuilder = new MdDocumentBuilder();
         _executeBuildSteps(documentBuilder);
         var markdownDocument = documentBuilder.Build();
-        var markdownDocumentWriter = MarkdownDocumentWriterFactory.Create(outputStream, _options.NewLineProvider);
+        var markdownDocumentWriter = MarkdownDocumentWriterFactory.Create(outputStream, _options.IndentationProvider, _options.NewLineProvider);
         await markdownDocumentWriter.WriteToStreamAsync(markdownDocument).ConfigureAwait(false);
     }
 

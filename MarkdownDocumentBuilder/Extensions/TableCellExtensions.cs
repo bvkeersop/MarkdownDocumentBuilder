@@ -1,6 +1,6 @@
-﻿using MarkdownDocumentBuilder.Model.Elements;
+﻿using MarkdownDocumentBuilder.Model.Elements.Table;
 
-namespace DocumentBuilder.Core.Extensions;
+namespace MarkdownDocumentBuilder.Extensions;
 
 public static class TableCellExtensions
 {

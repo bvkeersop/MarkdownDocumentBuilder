@@ -1,6 +1,6 @@
-﻿namespace DocumentBuilder.Helpers;
+﻿namespace MarkdownDocumentBuilder.Utilities;
 
-public static class StreamHelper
+internal static class StreamHelper
 {
     public static string GetStreamContents(Stream stream)
     {

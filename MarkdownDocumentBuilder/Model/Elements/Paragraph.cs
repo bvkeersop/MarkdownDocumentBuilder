@@ -1,13 +1,14 @@
 ﻿namespace MarkdownDocumentBuilder.Model.Elements;
 
-public class Paragraph : IMarkdownElement
+internal class Paragraph : IMarkdownElement
 {
-    public string[] Lines { get; }
+    public readonly string[] _lines;
 
     public Paragraph(params string[] lines)
     {
-        Lines = lines;
+        _lines = lines;
     }
 
-    public IEnumerable<MarkdownLine> ToMarkdown() => Lines.Select(line => new MarkdownLine(line));
+    public IEnumerable<MarkdownLine> ToMarkdown() 
+        => _lines.Select(line => new MarkdownLine(line));
 }

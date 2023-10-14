@@ -1,34 +1,33 @@
-﻿using DocumentBuilder.Attributes;
-using MarkdownDocumentBuilder.Attributes;
+﻿using MarkdownDocumentBuilder.Attributes;
 using System.Reflection;
 
-namespace DocumentBuilder.Helpers;
+namespace MarkdownDocumentBuilder.Utilities;
 
-public static class ReflectionHelper<TRow>
+internal static class TableReflectionHelper
 {
-    public static IOrderedEnumerable<PropertyInfo> GetOrderedTableRowPropertyInfos()
+    public static IOrderedEnumerable<PropertyInfo> GetOrderedTableRowPropertyInfos<TRow>()
     {
-        var tableRowProperties = GetTableRowPropertyInfos();
-        var filteredTableRowProperties = FilterPropertiesWithIgnoreColumnAttribute(tableRowProperties);
+        var tableRowProperties = GetTableRowPropertyInfos<TRow>();
+        var filteredTableRowProperties = FilterPropertiesWithIgnoreColumnAttribute<TRow>(tableRowProperties);
         return filteredTableRowProperties.OrderBy(t => GetColumnAttribute(t).Order);
     }
 
-    public static IEnumerable<ColumnAttribute> GetOrderedColumnAttributes()
+    public static IEnumerable<ColumnAttribute> GetOrderedColumnAttributes<TRow>()
     {
-        var tableRowProperties = GetTableRowPropertyInfos();
-        var filteredTableRowProperties = FilterPropertiesWithIgnoreColumnAttribute(tableRowProperties);
+        var tableRowProperties = GetTableRowPropertyInfos<TRow>();
+        var filteredTableRowProperties = FilterPropertiesWithIgnoreColumnAttribute<TRow>(tableRowProperties);
 
         return filteredTableRowProperties
             .Select(t => GetColumnAttribute(t))
             .OrderBy(t => t.Order);
     }
 
-    private static IEnumerable<PropertyInfo> FilterPropertiesWithIgnoreColumnAttribute(IEnumerable<PropertyInfo> tableRowProperties)
+    private static IEnumerable<PropertyInfo> FilterPropertiesWithIgnoreColumnAttribute<TRow>(IEnumerable<PropertyInfo> tableRowProperties)
     {
         return tableRowProperties.Where(t => !HasIgnoreAttribute(t));
     }
 
-    private static IEnumerable<PropertyInfo> GetTableRowPropertyInfos()
+    private static IEnumerable<PropertyInfo> GetTableRowPropertyInfos<TRow>()
     {
         var tableRowType = typeof(TRow);
         return tableRowType.GetProperties(BindingFlags.Instance | BindingFlags.Public);

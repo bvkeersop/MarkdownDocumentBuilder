@@ -1,4 +1,4 @@
-﻿namespace DocumentBuilder.Options.Enumerations;
+﻿namespace MarkdownDocumentBuilder.Options.Enums;
 
 public enum Formatting
 {

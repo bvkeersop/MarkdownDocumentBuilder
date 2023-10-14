@@ -1,4 +1,4 @@
-﻿namespace DocumentBuilder.Exceptions
+﻿namespace MarkdownDocumentBuilder.Exceptions
 {
     public enum MarkdownDocumentBuilderErrorCode
     {

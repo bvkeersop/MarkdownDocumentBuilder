@@ -1,13 +1,13 @@
 ﻿using System.Text;
 
-namespace DocumentBuilder.Utilities;
+namespace MarkdownDocumentBuilder.Utilities;
 
 public interface IIndentationProvider
 {
     string GetIndentation(int indentationLevel);
 }
 
-public class SpaceIdentationProvider : IdentationProviderBase, IIndentationProvider
+internal class SpaceIdentationProvider : IdentationProviderBase, IIndentationProvider
 {
     public SpaceIdentationProvider(int identationSize, int rootIndentationLevel) : base(identationSize, " ", rootIndentationLevel) { }
 
@@ -17,7 +17,7 @@ public class SpaceIdentationProvider : IdentationProviderBase, IIndentationProvi
     }
 }
 
-public class TabIdentationProvider : IdentationProviderBase, IIndentationProvider
+internal class TabIdentationProvider : IdentationProviderBase, IIndentationProvider
 {
     public TabIdentationProvider(int identationSize, int rootIndentationLevel) : base(identationSize, "    ", rootIndentationLevel) { }
 
@@ -27,7 +27,7 @@ public class TabIdentationProvider : IdentationProviderBase, IIndentationProvide
     }
 }
 
-public abstract class IdentationProviderBase
+internal abstract class IdentationProviderBase
 {
     private readonly string _indentationCharacter;
     private readonly int _rootIndentationLevel;

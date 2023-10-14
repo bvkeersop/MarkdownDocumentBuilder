@@ -6,15 +6,15 @@ namespace MarkdownDocumentBuilder.Model.Elements;
 internal class Image : IMarkdownElement
 {
     public const char Asterix = '*';
-    public string Name { get; }
-    public string Path { get; }
-    public string? Caption { get; }
+    public readonly string _name;
+    public readonly string _path;
+    public readonly string? _caption;
 
     public Image(string name, string path, string? caption = null)
     {
-        Name = name;
-        Path = path;
-        Caption = caption;
+        _name = name;
+        _path = path;
+        _caption = caption;
     }
 
     public IEnumerable<MarkdownLine> ToMarkdown()
@@ -24,7 +24,7 @@ internal class Image : IMarkdownElement
             BuildNameWithPath()
         };
 
-        if (Caption != null)
+        if (_caption != null)
         {
             var caption = BuildCaption();
             markdownLines.Add(caption);
@@ -35,9 +35,9 @@ internal class Image : IMarkdownElement
 
     private MarkdownLine BuildNameWithPath()
         => new StringBuilder().Append("![")
-            .Append(Name)
+            .Append(_name)
             .Append("](")
-            .Append(Path)
+            .Append(_path)
             .Append(')')
             .ToString()
             .ToMarkdownLine();
@@ -45,7 +45,7 @@ internal class Image : IMarkdownElement
     private MarkdownLine BuildCaption()
           => new StringBuilder()
             .Append(Asterix)
-            .Append(Caption)
+            .Append(_caption)
             .Append(Asterix)
             .ToString()
             .ToMarkdownLine();

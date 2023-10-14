@@ -19,6 +19,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="Resources\ExpectedComplexList.md">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="Resources\ExpectedDocument.md">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

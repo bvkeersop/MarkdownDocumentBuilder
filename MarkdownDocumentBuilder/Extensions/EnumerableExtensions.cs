@@ -1,6 +1,6 @@
-﻿namespace DocumentBuilder.Core.Extensions;
+﻿namespace MarkdownDocumentBuilder.Extensions;
 
 public static class EnumerableExtensions
 {
-    public static bool IsNullOrEmpty<T>(this IEnumerable<T> enumerable) => (enumerable == null || !enumerable.Any());
+    public static bool IsNullOrEmpty<T>(this IEnumerable<T> enumerable) => enumerable == null || !enumerable.Any();
 }

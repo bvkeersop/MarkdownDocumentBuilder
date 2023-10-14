@@ -1,4 +1,7 @@
-﻿namespace MarkdownDocumentBuilder.Model;
+﻿using MarkdownDocumentBuilder.Utilities;
+using System.Text;
+
+namespace MarkdownDocumentBuilder.Model;
 
 public record MarkdownLine
 {
@@ -12,4 +15,19 @@ public record MarkdownLine
     }
 
     public static MarkdownLine Empty() => new();
+
+    public string GetIndentedContent(IIndentationProvider indentationProvider)
+    {
+        var indentation = indentationProvider.GetIndentation(IndentationLevel);
+
+        if (string.IsNullOrEmpty(Content)) 
+        {
+            return string.Empty;
+        }
+
+        return new StringBuilder()
+            .Append(indentation)
+            .Append(Content)
+            .ToString();
+    }
 }

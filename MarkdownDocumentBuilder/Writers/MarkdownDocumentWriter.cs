@@ -1,7 +1,7 @@
 ﻿using MarkdownDocumentBuilder.Model;
 
 namespace MarkdownDocumentBuilder.Writers;
-public interface IMarkdownDocumentWriter
+internal interface IMarkdownDocumentWriter
 {
     Task WriteToStreamAsync(MarkdownDocument markdownDocument);
 }

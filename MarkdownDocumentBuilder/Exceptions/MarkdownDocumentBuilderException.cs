@@ -1,6 +1,6 @@
 ﻿using System.Runtime.Serialization;
 
-namespace DocumentBuilder.Exceptions
+namespace MarkdownDocumentBuilder.Exceptions
 {
     [Serializable]
     public sealed class MarkdownDocumentBuilderException : Exception
@@ -47,7 +47,7 @@ namespace DocumentBuilder.Exceptions
         private MarkdownDocumentBuilderException(SerializationInfo info, StreamingContext context) : base(info, context)
         {
             var errorCode = info.GetValue(nameof(ErrorCode), typeof(MarkdownDocumentBuilderErrorCode)) ?? MarkdownDocumentBuilderErrorCode.Unknown;
-            ErrorCode = (MarkdownDocumentBuilderErrorCode) errorCode;
+            ErrorCode = (MarkdownDocumentBuilderErrorCode)errorCode;
         }
     }
 }

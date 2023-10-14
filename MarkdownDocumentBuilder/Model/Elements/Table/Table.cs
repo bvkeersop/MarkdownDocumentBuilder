@@ -1,8 +1,7 @@
-﻿using DocumentBuilder.Exceptions;
-using MarkdownDocumentBuilder.Model.Elements.Table;
+﻿using MarkdownDocumentBuilder.Exceptions;
 using MarkdownDocumentBuilder.Options;
 
-namespace MarkdownDocumentBuilder.Model.Elements;
+namespace MarkdownDocumentBuilder.Model.Elements.Table;
 
 internal class Table<TRow> : IMarkdownElement
 {

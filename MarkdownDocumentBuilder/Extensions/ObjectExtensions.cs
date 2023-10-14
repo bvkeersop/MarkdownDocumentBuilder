@@ -1,4 +1,6 @@
-﻿namespace MarkdownDocumentBuilder.Extensions;
+﻿using System.Reflection;
+
+namespace MarkdownDocumentBuilder.Extensions;
 
 internal static class ObjectExtensions
 {
