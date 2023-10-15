@@ -1,12 +1,10 @@
-﻿using MarkdownDocumentBuilder.Factories;
-using MarkdownDocumentBuilder.Model;
+﻿using MarkdownDocumentBuilder.Model.Document;
+using MarkdownDocumentBuilder.Model.Document.Options;
 using MarkdownDocumentBuilder.Model.Elements;
 using MarkdownDocumentBuilder.Model.Elements.Headers;
 using MarkdownDocumentBuilder.Model.Elements.Lists;
 using MarkdownDocumentBuilder.Model.Elements.Table;
-using MarkdownDocumentBuilder.Options;
-using MarkdownDocumentBuilder.Options.Enums;
-using MarkdownDocumentBuilder.Utilities;
+using MarkdownDocumentBuilder.Model.Elements.Table.Options;
 
 namespace MarkdownDocumentBuilder.Builders;
 
@@ -20,7 +18,7 @@ public class MdContentBuilder : IMarkdownContentBuilder
         MarkdownTableOptions markdownDocumentOptions,
         NullOrEmptyEnumerableRenderingStrategy nullOrEmptyEnumerableRenderingStrategy)
     {
-        _enumerableValidator = EnumerableValidatorFactory.Create(nullOrEmptyEnumerableRenderingStrategy);
+        _enumerableValidator = EnumerableRenderingStrategyFactory.Create(nullOrEmptyEnumerableRenderingStrategy);
         _markdownDocumentOptions = markdownDocumentOptions;
     }
 
@@ -126,20 +124,7 @@ public class MdContentBuilder : IMarkdownContentBuilder
     /// <typeparam name="TRow">The type of the row</typeparam>
     /// <param name="tableRows">The values of the table rows</param>
     /// <returns><see cref="IMarkdownContentBuilder"/></returns>
-    public IMarkdownContentBuilder AddTable<T>(T tableRow)
-    {
-        _ = tableRow ?? throw new ArgumentNullException(nameof(tableRow));
-        var tableRows = new T[] { tableRow };
-        return AddTableInternal(tableRows);
-    }
-
-    /// <summary>
-    /// Adds a table to the document
-    /// </summary>
-    /// <typeparam name="TRow">The type of the row</typeparam>
-    /// <param name="tableRows">The values of the table rows</param>
-    /// <returns><see cref="IMarkdownContentBuilder"/></returns>
-    public IMarkdownContentBuilder AddTable<T>(IEnumerable<T> tableRows)
+    public IMarkdownContentBuilder AddTable<T>(params T[] tableRows)
     {
         _ = tableRows ?? throw new ArgumentNullException(nameof(tableRows));
         return AddTableInternal(tableRows);

@@ -1,5 +1,6 @@
 ﻿using MarkdownDocumentBuilder.Extensions;
-using MarkdownDocumentBuilder.Options;
+using MarkdownDocumentBuilder.Model.Document;
+using MarkdownDocumentBuilder.Model.Elements.Table.Options;
 using System.Text;
 
 namespace MarkdownDocumentBuilder.Model.Elements.Table;

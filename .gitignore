@@ -3,6 +3,10 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/main/VisualStudio.gitignore
 
+# TestOutput Folder (used for easy debugging of markdown files)
+
+MarkdownDocumentBuilder.Test.Unit/TestOutput/
+
 # User-specific files
 *.rsuser
 *.suo

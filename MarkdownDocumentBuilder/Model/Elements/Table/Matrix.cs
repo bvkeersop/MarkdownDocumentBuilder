@@ -1,5 +1,4 @@
 ﻿using MarkdownDocumentBuilder.Exceptions;
-using MarkdownDocumentBuilder.Utilities;
 using System.Reflection;
 
 namespace MarkdownDocumentBuilder.Model.Elements.Table;

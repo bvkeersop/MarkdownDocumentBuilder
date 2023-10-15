@@ -1,4 +1,4 @@
-﻿using MarkdownDocumentBuilder.Model;
+﻿using MarkdownDocumentBuilder.Model.Document;
 
 namespace MarkdownDocumentBuilder.Extensions;
 

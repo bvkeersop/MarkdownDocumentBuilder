@@ -1,5 +1,5 @@
-﻿using MarkdownDocumentBuilder.Model;
-using MarkdownDocumentBuilder.Options;
+﻿using MarkdownDocumentBuilder.Model.Document;
+using MarkdownDocumentBuilder.Model.Document.Options;
 
 namespace MarkdownDocumentBuilder.Builders;
 

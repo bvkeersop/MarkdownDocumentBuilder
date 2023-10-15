@@ -1,5 +1,6 @@
 ﻿using MarkdownDocumentBuilder.Exceptions;
-using MarkdownDocumentBuilder.Options;
+using MarkdownDocumentBuilder.Model.Document;
+using MarkdownDocumentBuilder.Model.Elements.Table.Options;
 
 namespace MarkdownDocumentBuilder.Model.Elements.Table;
 
