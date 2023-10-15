@@ -8,21 +8,21 @@ internal static class TableReflectionHelper
     public static IOrderedEnumerable<PropertyInfo> GetOrderedTableRowPropertyInfos<TRow>()
     {
         var tableRowProperties = GetTableRowPropertyInfos<TRow>();
-        var filteredTableRowProperties = FilterPropertiesWithIgnoreColumnAttribute<TRow>(tableRowProperties);
+        var filteredTableRowProperties = FilterPropertiesWithIgnoreColumnAttribute(tableRowProperties);
         return filteredTableRowProperties.OrderBy(t => GetColumnAttribute(t).Order);
     }
 
     public static IEnumerable<ColumnAttribute> GetOrderedColumnAttributes<TRow>()
     {
         var tableRowProperties = GetTableRowPropertyInfos<TRow>();
-        var filteredTableRowProperties = FilterPropertiesWithIgnoreColumnAttribute<TRow>(tableRowProperties);
+        var filteredTableRowProperties = FilterPropertiesWithIgnoreColumnAttribute(tableRowProperties);
 
         return filteredTableRowProperties
             .Select(t => GetColumnAttribute(t))
             .OrderBy(t => t.Order);
     }
 
-    private static IEnumerable<PropertyInfo> FilterPropertiesWithIgnoreColumnAttribute<TRow>(IEnumerable<PropertyInfo> tableRowProperties)
+    private static IEnumerable<PropertyInfo> FilterPropertiesWithIgnoreColumnAttribute(IEnumerable<PropertyInfo> tableRowProperties)
     {
         return tableRowProperties.Where(t => !HasIgnoreAttribute(t));
     }

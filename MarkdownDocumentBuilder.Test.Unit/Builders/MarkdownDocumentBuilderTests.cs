@@ -63,7 +63,7 @@ public class MarkdownDocumentBuilderTests
                     "You wouldn't get this from any other guy"
                 });
 
-                content.AddFencedCodeblock(codeblock:
+                content.AddFencedCodeblock(code:
                 @"foreach (var note in song)
 {
     note.Play();

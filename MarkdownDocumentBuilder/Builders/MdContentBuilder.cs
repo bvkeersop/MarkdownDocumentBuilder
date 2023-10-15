@@ -183,8 +183,8 @@ public class MdContentBuilder : IMarkdownContentBuilder
     /// <summary>
     /// Adds a codeblock to the document
     /// </summary>
-    /// <param name="code">The codeblock</param>
-    /// <param name="language">The programming language the codeblock is written in</param>
+    /// <param name="code">The code inside of the block</param>
+    /// <param name="language">The programming language the code is written in</param>
     /// <returns><see cref="IMarkdownContentBuilder"/></returns>
     public IMarkdownContentBuilder AddFencedCodeblock(string code, string? language = null)
     {

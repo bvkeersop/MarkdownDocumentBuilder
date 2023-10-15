@@ -87,10 +87,10 @@ public interface IMarkdownContentBuilder
     /// <summary>
     /// Adds a codeblock to the document
     /// </summary>
-    /// <param name="codeblock">The codeblock</param>
-    /// <param name="language">The programming language the codeblock is written in</param>
+    /// <param name="code">The code inside of the block</param>
+    /// <param name="language">The programming language the code is written in</param>
     /// <returns><see cref="IMarkdownContentBuilder"/></returns>
-    IMarkdownContentBuilder AddFencedCodeblock(string codeblock, string? language = null);
+    IMarkdownContentBuilder AddFencedCodeblock(string code, string? language = null);
 
     /// <summary>
     /// Adds an horizontal rule
