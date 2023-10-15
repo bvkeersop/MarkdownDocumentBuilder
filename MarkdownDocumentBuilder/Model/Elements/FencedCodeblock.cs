@@ -1,4 +1,5 @@
 ﻿using MarkdownDocumentBuilder.Extensions;
+using MarkdownDocumentBuilder.Model.Document;
 using System.Text;
 
 namespace MarkdownDocumentBuilder.Model.Elements;

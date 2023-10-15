@@ -1,7 +1,7 @@
-﻿using MarkdownDocumentBuilder.Attributes;
-using MarkdownDocumentBuilder.Extensions;
-using MarkdownDocumentBuilder.Options;
-using MarkdownDocumentBuilder.Options.Enums;
+﻿using MarkdownDocumentBuilder.Extensions;
+using MarkdownDocumentBuilder.Model.Document;
+using MarkdownDocumentBuilder.Model.Elements.Table.Attributes;
+using MarkdownDocumentBuilder.Model.Elements.Table.Options;
 using System.Text;
 
 namespace MarkdownDocumentBuilder.Model.Elements.Table;

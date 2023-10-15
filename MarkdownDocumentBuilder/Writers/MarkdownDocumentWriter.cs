@@ -1,4 +1,4 @@
-﻿using MarkdownDocumentBuilder.Model;
+﻿using MarkdownDocumentBuilder.Model.Document;
 
 namespace MarkdownDocumentBuilder.Writers;
 internal interface IMarkdownDocumentWriter
@@ -34,7 +34,7 @@ internal class MarkdownDocumentWriter : IMarkdownDocumentWriter, IDisposable
 
             if (!IsLastElement(numberOfMarkdownElements, index))
             {
-                await _markdownStreamWriter.WriteNewLineAsync();
+                await _markdownStreamWriter.WriteNewLineAsync().ConfigureAwait(false);
             }
         }
 

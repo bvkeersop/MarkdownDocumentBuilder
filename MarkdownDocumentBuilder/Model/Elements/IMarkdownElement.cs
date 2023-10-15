@@ -1,4 +1,6 @@
-﻿namespace MarkdownDocumentBuilder.Model.Elements;
+﻿using MarkdownDocumentBuilder.Model.Document;
+
+namespace MarkdownDocumentBuilder.Model.Elements;
 
 public interface IMarkdownElement
 {

@@ -1,12 +1,10 @@
-﻿using MarkdownDocumentBuilder.Factories;
-using MarkdownDocumentBuilder.Model;
+﻿using MarkdownDocumentBuilder.Model.Document;
+using MarkdownDocumentBuilder.Model.Document.Options;
 using MarkdownDocumentBuilder.Model.Elements;
 using MarkdownDocumentBuilder.Model.Elements.Headers;
 using MarkdownDocumentBuilder.Model.Elements.Lists;
 using MarkdownDocumentBuilder.Model.Elements.Table;
-using MarkdownDocumentBuilder.Options;
-using MarkdownDocumentBuilder.Options.Enums;
-using MarkdownDocumentBuilder.Utilities;
+using MarkdownDocumentBuilder.Model.Elements.Table.Options;
 
 namespace MarkdownDocumentBuilder.Builders;
 
@@ -20,7 +18,7 @@ public class MdContentBuilder : IMarkdownContentBuilder
         MarkdownTableOptions markdownDocumentOptions,
         NullOrEmptyEnumerableRenderingStrategy nullOrEmptyEnumerableRenderingStrategy)
     {
-        _enumerableValidator = EnumerableValidatorFactory.Create(nullOrEmptyEnumerableRenderingStrategy);
+        _enumerableValidator = EnumerableRenderingStrategyFactory.Create(nullOrEmptyEnumerableRenderingStrategy);
         _markdownDocumentOptions = markdownDocumentOptions;
     }
 

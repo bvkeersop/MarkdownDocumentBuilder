@@ -1,6 +1,6 @@
 using FluentAssertions;
-using MarkdownDocumentBuilder.Model;
-using MarkdownDocumentBuilder.Options;
+using MarkdownDocumentBuilder.Model.Document;
+using MarkdownDocumentBuilder.Model.Document.Options;
 using MarkdownDocumentBuilder.Test.Unit.TestHelpers;
 using MarkdownDocumentBuilder.Test.Unit.TestModel;
 
@@ -63,12 +63,12 @@ public class MarkdownDocumentBuilderTests
                     "You wouldn't get this from any other guy"
                 });
 
-content.AddFencedCodeblock(codeblock:
-@"foreach (var note in song)
+                content.AddFencedCodeblock(codeblock:
+                @"foreach (var note in song)
 {
     note.Play();
 }",
-language: "C#");
+                language: "C#");
 
                 content.AddHorizontalRule();
 

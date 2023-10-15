@@ -1,4 +1,5 @@
 ﻿using System.Text;
+using MarkdownDocumentBuilder.Model.Document;
 
 namespace MarkdownDocumentBuilder.Model.Elements.Lists;
 internal abstract class MarkdownList<TValue> : IMarkdownElement

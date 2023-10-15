@@ -1,5 +1,10 @@
 # MarkdownDocumentBuilder
 
+![Workflows: dotnet](https://github.com/bvkeersop/MarkdownDocumentBuilder/actions/workflows/pipeline.yml/badge.svg)
+![GitHub](https://img.shields.io/github/license/bvkeersop/MarkdownDocumentBuilder)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=bvkeersop_MarkdownDocumentBuilder&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=bvkeersop_MarkdownDocumentBuilder)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=bvkeersop_MarkdownDocumentBuilder&metric=coverage)](https://sonarcloud.io/summary/new_code?id=bvkeersop_MarkdownDocumentBuilder)
+
 `MarkdownDocumentBuilder` is a library that enables you to create markdown documents using a fluent syntax. The syntax is influences by [QuestPdf](https://github.com/QuestPDF/QuestPDF).
 
 # Table of Contents
@@ -8,20 +13,13 @@
 - [Table of Contents](#table-of-contents)
   - [Creating a markdown document](#creating-a-document)
   - [Configure rendering options (optional)](#configure-rendering-options-(optional))
-      - [MarkdownDocumentOptions](#markdown)
   - [Saving a markdown document](#saving-a-markdown-document)
-  - [Tables](#tables)
-    - [Creating a Table](#creating-a-table)
-      - [1. Define a POCO](#1-define-a-poco)
-      - [2. Call AddTable](#2-call-addtable)
-      - [3. Configuration](#3-attribute-configuration)
-        -[MarkdownTableOptions](#markdowntableoptions)
-  - [Options](#options)
-  - [DocumentOptions](#documentoptions)
-  - [Markdown](#markdown-1)
-      - [MarkdownTableOptions](#markdowntableoptions)
-    - [Attributes](#attributes)
+  - [Supported Elements](#supported-elements)
+    - [Simple](#simple)
+    - [Tables](#tables)
+    - [Lists](#lists)
   - [Credits](#credits)
+  - [Future work](#future-work)
 
 ## Creating a markdown document
 
@@ -93,9 +91,12 @@ var filePath = "./Users/Rick/Lyrics.md";
 await document.SaveAsync(filePath);
 
 ```
-## Supported elements
+## Supported Elements
 
 MarkdownDocumentBuilder supports adding different kinds of elements to a document. think of headers, paragraphs, tables etc. 
+
+### Simple
+
 To see all elements that are supported, take a look at the [IMarkdownContentBuilder](https://github.com/bvkeersop/MarkdownDocumentBuilder/blob/main/MarkdownDocumentBuilder/Builders/IMarkdownContentBuilder.cs) interface, or use intellisense while building your document.
 Most elements are very straight forward and based on string parameters, there are a couple of advanced ones explained below.
 
