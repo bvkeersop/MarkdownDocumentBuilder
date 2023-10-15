@@ -280,10 +280,10 @@ This will render the following:
 
 `MarkdownDocumentBuilder` is inspired by [QuestPdf](https://github.com/QuestPDF/QuestPDF) and uses a similar syntax to create documents.
 
-
 `MarkdownDocumentBuilder` is made possible by the following projects:
 
-* [FluentAssertions](https://fluentassertions.com/)
+- [FluentAssertions](https://fluentassertions.com/)
+- [NSubstitute](https://nsubstitute.github.io/)
 
 ## Future work
 
