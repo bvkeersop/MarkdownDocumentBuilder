@@ -1,4 +1,6 @@
-﻿using MarkdownDocumentBuilder.Model.Document;
+﻿using MarkdownDocumentBuilder.Exceptions;
+using MarkdownDocumentBuilder.Model.Document;
+using MarkdownDocumentBuilder.Model.Elements;
 
 namespace MarkdownDocumentBuilder.Writers;
 internal interface IMarkdownDocumentWriter
@@ -25,7 +27,8 @@ internal class MarkdownDocumentWriter : IMarkdownDocumentWriter, IDisposable
         foreach (var markdownElement in markdownElements)
         {
             index++;
-            var markdownLines = markdownElement.ToMarkdown();
+
+            var markdownLines = GetMarkdownlinesForElement(markdownElement);
 
             foreach (var markdownLine in markdownLines)
             {
@@ -39,6 +42,20 @@ internal class MarkdownDocumentWriter : IMarkdownDocumentWriter, IDisposable
         }
 
         await _markdownStreamWriter.FlushAsync().ConfigureAwait(false);
+    }
+
+    private static IEnumerable<MarkdownLine> GetMarkdownlinesForElement(IMarkdownElement markdownElement)
+    {
+        try
+        {
+            return markdownElement.ToMarkdown();
+        }
+        catch (Exception ex)
+        {
+            var elementType = markdownElement.GetType();
+            var errorMessage = $"An unexpected error occured while trying to convert {elementType} to markdown";
+            throw new MarkdownDocumentBuilderException(MarkdownDocumentBuilderErrorCode.CouldNotConvertToMarkdown, errorMessage, ex);
+        }
     }
 
     private static bool IsLastElement(int numberOfMarkdownElements, int index) => numberOfMarkdownElements <= index;

@@ -1,8 +1,9 @@
 ﻿# Rick Astley - Never Gonna Give You Up
 
-| Artist      | Title                   | Album                      | Released         |
-| ----------- | ----------------------- | -------------------------- | ---------------- |
-| Rick Astley | Never Gonna Give You Up | Whenever You Need Somebody | 16 November 1987 |
+| Artist      | Title                                        | Album                      | Released         |
+| ----------- | -------------------------------------------- | -------------------------- | ---------------- |
+| Rick Astley | Never Gonna Give You Up                      | Whenever You Need Somebody | 16 November 1987 |
+| Eduard Khil | I Am So Glad I'm Finally Returning Back Home | Single                     | 1966             |
 
 ![rick-astley-picture](./assets/images/rick-astley.png)
 *Rick Astley, a hunk of a man!*

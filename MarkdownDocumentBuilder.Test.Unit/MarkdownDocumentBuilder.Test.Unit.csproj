@@ -7,6 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Writers\**" />
+    <EmbeddedResource Remove="Writers\**" />
+    <None Remove="Writers\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="Resources\ExpectedSimpleList.md" />
   </ItemGroup>
 
@@ -44,7 +50,6 @@
 
   <ItemGroup>
     <Folder Include="TestOutput\" />
-    <Folder Include="Writers\" />
   </ItemGroup>
 
 </Project>

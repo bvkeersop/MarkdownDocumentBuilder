@@ -15,7 +15,7 @@ internal abstract class TableElement<TRow>
     public IEnumerable<TableCell> TableCells { get; }
     public MarkdownTableOptions Options { get; }
 
-    public TableElement(IEnumerable<TRow> tableRows, MarkdownTableOptions options)
+    protected TableElement(IEnumerable<TRow> tableRows, MarkdownTableOptions options)
     {
         TableValues = new Matrix<TRow>(tableRows);
         OrderedColumnAttributes = TableReflectionHelper.GetOrderedColumnAttributes<TRow>();

@@ -63,7 +63,7 @@ public class MarkdownDocumentBuilderTests
                     "You wouldn't get this from any other guy"
                 });
 
-                content.AddFencedCodeblock(codeblock:
+                content.AddFencedCodeblock(code:
                 @"foreach (var note in song)
 {
     note.Play();
@@ -79,7 +79,7 @@ public class MarkdownDocumentBuilderTests
         using var stream = new MemoryStream();
 
         // Act
-        document.SaveAsync(FilePath.TestPath);
+        document.SaveAsync(stream);
 
         // Assert
         string result = stream.ReadAsString();

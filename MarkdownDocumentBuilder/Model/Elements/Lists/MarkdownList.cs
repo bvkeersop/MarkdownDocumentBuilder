@@ -8,7 +8,7 @@ internal abstract class MarkdownList<TValue> : IMarkdownElement
     private readonly IBulletPointProvider _bulletPointProvider;
     private readonly NestedIndex _nestedIndex;
 
-    public MarkdownList(
+    protected MarkdownList(
         IBulletPointProvider bulletPointProvider,
         params TValue[] value)
     {
@@ -153,7 +153,6 @@ internal abstract class MarkdownList<TValue> : IMarkdownElement
         var markdownContent = CombineBulletPointAndValue(propertyValue);
         var markdownLine = new MarkdownLine(markdownContent, currentIndentationLevel);
         markdownLines.Add(markdownLine);
-        return;
     }
 
     private string CombineBulletPointAndValue(object propertyValue)
