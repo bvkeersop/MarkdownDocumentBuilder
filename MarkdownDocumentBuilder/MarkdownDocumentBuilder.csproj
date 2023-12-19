@@ -1,13 +1,13 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
-  <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-  </PropertyGroup>
+	
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+	</PropertyGroup>
 
 	<PropertyGroup>
-		<PackageId>DocumentBuilder</PackageId>
+		<PackageId>MarkdownDocumentBuilder</PackageId>
 		<Authors>Bart van Keersop</Authors>
 		<Description>MarkdownDocumentBuilder enables you to create markdown documents using a fluent syntax.</Description>
 		<PackageTags>markdown documentation builder</PackageTags>
@@ -21,15 +21,12 @@
 		<None Include="..\README.md" Pack="true" PackagePath="\" />
 		<None Include="..\LICENSE" Pack="true" PackagePath="" />
 	</ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Model\Elements\Table\Attributes\" />
-  </ItemGroup>
-
-  <ItemGroup>
-	  <InternalsVisibleTo Include="$(AssemblyName).Test.Unit" />
-	  <!--Required for NSubstitute-->
-	  <InternalsVisibleTo Include="DynamicProxyGenAssembly2" />
-  </ItemGroup>
-
+	
+	<ItemGroup>
+		<!--Required for Unit Tests-->
+		<InternalsVisibleTo Include="$(AssemblyName).Test.Unit" />
+		<!--Required for NSubstitute-->
+		<InternalsVisibleTo Include="DynamicProxyGenAssembly2" />
+	</ItemGroup>
+	
 </Project>
