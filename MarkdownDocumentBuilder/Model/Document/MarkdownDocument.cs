@@ -13,7 +13,7 @@ public class MarkdownDocument
 
     public IEnumerable<IMarkdownElement> GetMarkdownElements() => Content.Elements;
 
-    public static MarkdownDocument Init()
+    internal static MarkdownDocument Init()
     {
         var document = (IMarkdownDocumentBuilder document) => { };
         return new MarkdownDocument(document);
