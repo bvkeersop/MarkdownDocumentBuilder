@@ -43,10 +43,10 @@ public interface IMarkdownContentBuilder
     /// <summary>
     /// Adds an ordered list to the document
     /// </summary>
-    /// <param name="classRepresentation">The class representation of the list</param>
+    /// <param name="listRepresentation">The class representation of the list</param>
     /// <returns><see cref="IMarkdownContentBuilder"/></returns>
 
-    IMarkdownContentBuilder AddOrderedList(IListRepresentation classRepresentation);
+    IMarkdownContentBuilder AddOrderedList(IListRepresentation listRepresentation);
 
     /// <summary>
     /// Adds an ordered list to the document
@@ -65,9 +65,9 @@ public interface IMarkdownContentBuilder
     /// <summary>
     /// Adds an ordered list to the document
     /// </summary>
-    /// <param name="classRepresentation">The class representation of the list</param>
+    /// <param name="listRepresentation">The class representation of the list</param>
     /// <returns><see cref="IMarkdownContentBuilder"/></returns>
-    IMarkdownContentBuilder AddUnorderedList<T>(T classRepresentation);
+    IMarkdownContentBuilder AddUnorderedList<T>(T listRepresentation);
 
     /// <summary>
     /// Adds a table to the document

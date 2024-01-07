@@ -88,12 +88,12 @@ public class MdContentBuilder : IMarkdownContentBuilder
     /// <summary>
     /// Adds an ordered list to the document
     /// </summary>
-    /// <param name="classRepresentation">The class representation of the list</param>
+    /// <param name="listRepresentation">The class representation of the list</param>
     /// <returns><see cref="IMarkdownContentBuilder"/></returns>
-    public IMarkdownContentBuilder AddOrderedList(IListRepresentation classRepresentation)
+    public IMarkdownContentBuilder AddOrderedList(IListRepresentation listRepresentation)
     {
-        _ = classRepresentation ?? throw new ArgumentNullException(nameof(classRepresentation));
-        _markdownContent.AddElement(new OrderedList<IListRepresentation>(classRepresentation));
+        _ = listRepresentation ?? throw new ArgumentNullException(nameof(listRepresentation));
+        _markdownContent.AddElement(new OrderedList<IListRepresentation>(listRepresentation));
         return this;
     }
 
@@ -118,12 +118,12 @@ public class MdContentBuilder : IMarkdownContentBuilder
     /// <summary>
     /// Adds an ordered list to the document
     /// </summary>
-    /// <param name="classRepresentation">The class representation of the list</param>
+    /// <param name="listRepresentation">The class representation of the list</param>
     /// <returns><see cref="IMarkdownContentBuilder"/></returns>
-    public IMarkdownContentBuilder AddUnorderedList<T>(T classRepresentation)
+    public IMarkdownContentBuilder AddUnorderedList<T>(T listRepresentation)
     {
-        _ = classRepresentation ?? throw new ArgumentNullException(nameof(classRepresentation));
-        _markdownContent.AddElement(new UnorderedList<T>(classRepresentation));
+        _ = listRepresentation ?? throw new ArgumentNullException(nameof(listRepresentation));
+        _markdownContent.AddElement(new UnorderedList<T>(listRepresentation));
         return this;
     }
 
