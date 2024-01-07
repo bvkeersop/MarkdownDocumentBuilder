@@ -1,5 +1,5 @@
-﻿using System.Text;
-using MarkdownDocumentBuilder.Model.Document;
+﻿using MarkdownDocumentBuilder.Model.Document;
+using System.Text;
 
 namespace MarkdownDocumentBuilder.Model.Elements.Lists;
 
@@ -10,19 +10,10 @@ internal abstract class MarkdownList<TValue> : IMarkdownElement
     private readonly NestedIndex _nestedIndex;
 
     protected MarkdownList(
-        IBulletPointProvider bulletPointProvider,
-        params TValue[] value)
-    {
-        _value = value;
-        _bulletPointProvider = bulletPointProvider;
-        _nestedIndex = new NestedIndex();
-    }
-
-    protected MarkdownList(
        IBulletPointProvider bulletPointProvider,
        IEnumerable<TValue> value)
     {
-        _value = (IEnumerable<TValue>) value.ToArray();
+        _value = value;
         _bulletPointProvider = bulletPointProvider;
         _nestedIndex = new NestedIndex();
     }
@@ -101,8 +92,8 @@ internal abstract class MarkdownList<TValue> : IMarkdownElement
     }
 
     private void RecursivelyTraversePropertyUntilCanBeRenderedWithToString(
-        int indentationLevel, 
-        List<MarkdownLine> markdownLines, 
+        int indentationLevel,
+        List<MarkdownLine> markdownLines,
         object propertyValue)
     {
         if (propertyValue is null)

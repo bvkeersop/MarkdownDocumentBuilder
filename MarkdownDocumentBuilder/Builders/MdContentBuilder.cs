@@ -1,4 +1,5 @@
-﻿using MarkdownDocumentBuilder.Exceptions;
+﻿using MarkdownDocumentBuilder.Abstractions;
+using MarkdownDocumentBuilder.Exceptions;
 using MarkdownDocumentBuilder.Extensions;
 using MarkdownDocumentBuilder.Model.Document;
 using MarkdownDocumentBuilder.Model.Document.Options;
@@ -89,10 +90,10 @@ public class MdContentBuilder : IMarkdownContentBuilder
     /// </summary>
     /// <param name="classRepresentation">The class representation of the list</param>
     /// <returns><see cref="IMarkdownContentBuilder"/></returns>
-    public IMarkdownContentBuilder AddOrderedList<T>(T classRepresentation)
+    public IMarkdownContentBuilder AddOrderedList(IListRepresentation classRepresentation)
     {
         _ = classRepresentation ?? throw new ArgumentNullException(nameof(classRepresentation));
-        _markdownContent.AddElement(new OrderedList<T>(classRepresentation));
+        _markdownContent.AddElement(new OrderedList<IListRepresentation>(classRepresentation));
         return this;
     }
 

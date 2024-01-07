@@ -1,4 +1,5 @@
-﻿using MarkdownDocumentBuilder.Model.Document;
+﻿using MarkdownDocumentBuilder.Abstractions;
+using MarkdownDocumentBuilder.Model.Document;
 
 namespace MarkdownDocumentBuilder.Builders;
 
@@ -45,7 +46,7 @@ public interface IMarkdownContentBuilder
     /// <param name="classRepresentation">The class representation of the list</param>
     /// <returns><see cref="IMarkdownContentBuilder"/></returns>
 
-    IMarkdownContentBuilder AddOrderedList<T>(T classRepresentation);
+    IMarkdownContentBuilder AddOrderedList(IListRepresentation classRepresentation);
 
     /// <summary>
     /// Adds an ordered list to the document

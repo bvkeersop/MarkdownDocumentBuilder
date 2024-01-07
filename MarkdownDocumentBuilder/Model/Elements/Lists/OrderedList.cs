@@ -1,8 +1,10 @@
-﻿namespace MarkdownDocumentBuilder.Model.Elements.Lists;
+﻿using MarkdownDocumentBuilder.Extensions;
+
+namespace MarkdownDocumentBuilder.Model.Elements.Lists;
 
 internal class OrderedList<TValue> : MarkdownList<TValue>
 {
-    public OrderedList(params TValue[] value) : base(new OrderedBulletPointProvider(), value)
+    public OrderedList(TValue value) : base(new OrderedBulletPointProvider(), value.WrapAsEnumerable())
     {
     }
 

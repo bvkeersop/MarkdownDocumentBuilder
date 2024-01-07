@@ -1,8 +1,10 @@
-﻿namespace MarkdownDocumentBuilder.Model.Elements.Lists;
+﻿using MarkdownDocumentBuilder.Extensions;
+
+namespace MarkdownDocumentBuilder.Model.Elements.Lists;
 
 internal class UnorderedList<TValue> : MarkdownList<TValue>
 {
-    public UnorderedList(params TValue[] value) : base(new OrderedBulletPointProvider(), value)
+    public UnorderedList(TValue value) : base(new OrderedBulletPointProvider(), value.WrapAsEnumerable())
     {
     }
 
