@@ -2,6 +2,7 @@
 using MarkdownDocumentBuilder.Model.Document;
 
 namespace MarkdownDocumentBuilder.Model.Elements.Lists;
+
 internal abstract class MarkdownList<TValue> : IMarkdownElement
 {
     protected IEnumerable<TValue> _value;
@@ -13,6 +14,15 @@ internal abstract class MarkdownList<TValue> : IMarkdownElement
         params TValue[] value)
     {
         _value = value;
+        _bulletPointProvider = bulletPointProvider;
+        _nestedIndex = new NestedIndex();
+    }
+
+    protected MarkdownList(
+       IBulletPointProvider bulletPointProvider,
+       IEnumerable<TValue> value)
+    {
+        _value = (IEnumerable<TValue>) value.ToArray();
         _bulletPointProvider = bulletPointProvider;
         _nestedIndex = new NestedIndex();
     }
@@ -168,4 +178,10 @@ internal abstract class MarkdownList<TValue> : IMarkdownElement
 
     private static bool ShouldBeRenderedWithToString(object item, Type itemType)
         => itemType.IsValueType || item is string;
+
+    private static bool IsListType<T>()
+    {
+        Type type = typeof(T);
+        return (type.IsGenericType && type.GetGenericTypeDefinition() == typeof(List<>));
+    }
 }
