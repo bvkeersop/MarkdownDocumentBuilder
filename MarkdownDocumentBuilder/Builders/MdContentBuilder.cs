@@ -1,4 +1,7 @@
-﻿using MarkdownDocumentBuilder.Model.Document;
+﻿using MarkdownDocumentBuilder.Abstractions;
+using MarkdownDocumentBuilder.Exceptions;
+using MarkdownDocumentBuilder.Extensions;
+using MarkdownDocumentBuilder.Model.Document;
 using MarkdownDocumentBuilder.Model.Document.Options;
 using MarkdownDocumentBuilder.Model.Elements;
 using MarkdownDocumentBuilder.Model.Elements.Headers;
@@ -85,9 +88,21 @@ public class MdContentBuilder : IMarkdownContentBuilder
     /// <summary>
     /// Adds an ordered list to the document
     /// </summary>
+    /// <param name="listRepresentation">The class representation of the list</param>
+    /// <returns><see cref="IMarkdownContentBuilder"/></returns>
+    public IMarkdownContentBuilder AddOrderedList(IListRepresentation listRepresentation)
+    {
+        _ = listRepresentation ?? throw new ArgumentNullException(nameof(listRepresentation));
+        _markdownContent.AddElement(new OrderedList<IListRepresentation>(listRepresentation));
+        return this;
+    }
+
+    /// <summary>
+    /// Adds an ordered list to the document
+    /// </summary>
     /// <param name="orderedListItems">The items in the ordered list</param>
     /// <returns><see cref="IMarkdownContentBuilder"/></returns>
-    public IMarkdownContentBuilder AddOrderedList<T>(params T[] orderedListItems)
+    public IMarkdownContentBuilder AddOrderedList<T>(IEnumerable<T> orderedListItems)
     {
         _ = orderedListItems ?? throw new ArgumentNullException(nameof(orderedListItems));
 
@@ -101,11 +116,23 @@ public class MdContentBuilder : IMarkdownContentBuilder
     }
 
     /// <summary>
-    /// Adds an unordered list to the document
+    /// Adds an ordered list to the document
     /// </summary>
-    /// <param name="unorderedListItems">The items in the unordered list</param>
+    /// <param name="listRepresentation">The class representation of the list</param>
     /// <returns><see cref="IMarkdownContentBuilder"/></returns>
-    public IMarkdownContentBuilder AddUnorderedList<T>(params T[] unorderedListItems)
+    public IMarkdownContentBuilder AddUnorderedList<T>(T listRepresentation)
+    {
+        _ = listRepresentation ?? throw new ArgumentNullException(nameof(listRepresentation));
+        _markdownContent.AddElement(new UnorderedList<T>(listRepresentation));
+        return this;
+    }
+
+    /// <summary>
+    /// Adds an ordered list to the document
+    /// </summary>
+    /// <param name="orderedListItems">The items in the ordered list</param>
+    /// <returns><see cref="IMarkdownContentBuilder"/></returns>
+    public IMarkdownContentBuilder AddUnorderedList<T>(IEnumerable<T> unorderedListItems)
     {
         _ = unorderedListItems ?? throw new ArgumentNullException(nameof(unorderedListItems));
 

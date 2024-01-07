@@ -1,6 +1,8 @@
-﻿namespace MarkdownDocumentBuilder.Test.Unit.TestModel;
+﻿using MarkdownDocumentBuilder.Abstractions;
 
-internal class ComplexList
+namespace MarkdownDocumentBuilder.Test.Unit.TestModel;
+
+internal class ComplexList : IListRepresentation
 {
     public string FirstItem { get; set; }
     public NestedObject NestedObject { get; set; }

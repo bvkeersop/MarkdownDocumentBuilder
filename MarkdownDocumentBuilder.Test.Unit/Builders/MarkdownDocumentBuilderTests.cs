@@ -45,9 +45,11 @@ public class MarkdownDocumentBuilderTests
 
                 content.AddParagraph("Rick Astley's hit song where he sings about:");
 
-                content.AddOrderedList(
+                content.AddOrderedList(new string[]
+                {
                     "Never giving you up.",
-                    "Never letting you down.");
+                    "Never letting you down."
+                });
 
                 content.AddBlockquote("NOTE: He will also never run around and desert you!");
 

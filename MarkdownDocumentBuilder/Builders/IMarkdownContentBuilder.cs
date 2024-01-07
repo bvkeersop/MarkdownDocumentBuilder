@@ -1,4 +1,5 @@
-﻿using MarkdownDocumentBuilder.Model.Document;
+﻿using MarkdownDocumentBuilder.Abstractions;
+using MarkdownDocumentBuilder.Model.Document;
 
 namespace MarkdownDocumentBuilder.Builders;
 
@@ -42,16 +43,31 @@ public interface IMarkdownContentBuilder
     /// <summary>
     /// Adds an ordered list to the document
     /// </summary>
+    /// <param name="listRepresentation">The class representation of the list</param>
+    /// <returns><see cref="IMarkdownContentBuilder"/></returns>
+
+    IMarkdownContentBuilder AddOrderedList(IListRepresentation listRepresentation);
+
+    /// <summary>
+    /// Adds an ordered list to the document
+    /// </summary>
     /// <param name="orderedListItems">The items in the ordered list</param>
     /// <returns><see cref="IMarkdownContentBuilder"/></returns>
-    IMarkdownContentBuilder AddOrderedList<T>(params T[] orderedListItems);
+    IMarkdownContentBuilder AddOrderedList<T>(IEnumerable<T> orderedListItems);
 
     /// <summary>
     /// Adds an unordered list to the document
     /// </summary>
     /// <param name="unorderedListItems">The items in the unordered list</param>
     /// <returns><see cref="IMarkdownContentBuilder"/></returns>
-    IMarkdownContentBuilder AddUnorderedList<T>(params T[] unorderedListItems);
+    IMarkdownContentBuilder AddUnorderedList<T>(IEnumerable<T> unorderedListItems);
+
+    /// <summary>
+    /// Adds an ordered list to the document
+    /// </summary>
+    /// <param name="listRepresentation">The class representation of the list</param>
+    /// <returns><see cref="IMarkdownContentBuilder"/></returns>
+    IMarkdownContentBuilder AddUnorderedList<T>(T listRepresentation);
 
     /// <summary>
     /// Adds a table to the document

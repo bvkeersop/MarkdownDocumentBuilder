@@ -7,6 +7,6 @@
         CouldNotFindTableRowAtIndex,
         ProvidedEnumerableIsEmpty,
         ProvidedGenericTypeForTableDoesNotEqualRunTimeType,
-        CouldNotConvertToMarkdown
+        CouldNotConvertToMarkdown,
     }
 }

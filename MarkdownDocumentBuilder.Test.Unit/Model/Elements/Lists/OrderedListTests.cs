@@ -9,10 +9,64 @@ namespace MarkdownDocumentBuilder.Test.Unit.Model.Elements.Lists;
 public class OrderedListTests
 {
     [TestMethod]
-    public void ToMarkdown_SimpleList_ReturnsExpectedMarkdown()
+    public void ToMarkdown_SimpleArray_ReturnsExpectedMarkdown()
     {
         // Arrange
         var simpleList = new string[] { "FirstItem", "SecondItem" };
+
+        var document = MarkdownDocument.Build(document =>
+        {
+            document.Content(content =>
+            {
+                content.AddOrderedList(simpleList);
+            });
+        });
+
+        using var stream = new MemoryStream();
+
+        // Act
+        document.SaveAsync(stream);
+
+        // Assert
+        string result = stream.ReadAsString();
+        string filePath = Path.Combine("Resources/List", "ExpectedSimpleList.md");
+        var expectedDocument = FileReader.ReadFile(filePath);
+        result.Should().Be(expectedDocument);
+    }
+
+    [TestMethod]
+    public void ToMarkdown_SimpleList_ReturnsExpectedMarkdown()
+    {
+        // Arrange
+        var simpleList = new List<string> { "FirstItem", "SecondItem" };
+
+        var document = MarkdownDocument.Build(document =>
+        {
+            document.Content(content =>
+            {
+                content.AddOrderedList(simpleList);
+            });
+        });
+
+        using var stream = new MemoryStream();
+
+        // Act
+        document.SaveAsync(stream);
+
+        // Assert
+        string result = stream.ReadAsString();
+        string filePath = Path.Combine("Resources/List", "ExpectedSimpleList.md");
+        var expectedDocument = FileReader.ReadFile(filePath);
+        result.Should().Be(expectedDocument);
+    }
+
+    [TestMethod]
+    public void ToMarkdown_SimpleEnumerable_ReturnsExpectedMarkdown()
+    {
+        // Arrange
+        var simpleList = Enumerable.Empty<string>();
+        simpleList = simpleList.Append("FirstItem");
+        simpleList = simpleList.Append("SecondItem");
 
         var document = MarkdownDocument.Build(document =>
         {
@@ -56,32 +110,6 @@ public class OrderedListTests
         // Assert
         string result = stream.ReadAsString();
         string filePath = Path.Combine("Resources/List", "ExpectedComplexList.md");
-        var expectedDocument = FileReader.ReadFile(filePath);
-        result.Should().Be(expectedDocument);
-    }
-
-    [TestMethod]
-    public void ToMarkdown_TwoComplexLists_ReturnsExpectedMarkdown()
-    {
-        // Arrange
-        var complexList = CreateComplexList();
-
-        var document = MarkdownDocument.Build(document =>
-        {
-            document.Content(content =>
-            {
-                content.AddOrderedList(complexList, complexList);
-            });
-        });
-
-        using var stream = new MemoryStream();
-
-        // Act
-        document.SaveAsync(stream);
-
-        // Assert
-        string result = stream.ReadAsString();
-        string filePath = Path.Combine("Resources/List", "ExpectedDoubleComplexList.md");
         var expectedDocument = FileReader.ReadFile(filePath);
         result.Should().Be(expectedDocument);
     }
